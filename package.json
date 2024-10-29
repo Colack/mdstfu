@@ -1,6 +1,6 @@
 {
   "name": "mdstfu",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "Fetch markdown files from urls.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
