@@ -1,48 +1,45 @@
 /*
-    markdown-fetcher - @colack/markdown-fetcher
-    A simple utility to fetch markdown files from GitHub URLs or any other URLs.
+    mdstfu - Fetch and render markdown files from the web
 */
 
+import { marked} from 'marked';
+
 /**
- * Fetches a markdown file from a GitHub URL.
- * @param url The URL of the markdown file.
- * @returns The markdown content.
+ * Fetch and render markdown files from the web
  */
-export async function fetchMarkdownFromGithub(url: string)
-{
-    try {
-        const urlObject = new URL(url);
-        if (urlObject.hostname !== 'raw.githubusercontent.com') {
-            throw new Error('URL is not a GitHub raw URL');
-        }
+export class mdstfu {
+    url: string;
+    markdown: string;
 
-        if (!urlObject.pathname.endsWith('.md')) {
-            throw new Error('URL is not a markdown file');
-        }
-
-        const response = await fetch(url, {
-            headers: { 'Accept': 'application/vnd.github.v3.raw' }
-        });
-
-        const markdown = await response.text();
-        return markdown;
-    } catch (error) {
-        console.error(`Error fetching markdown from GitHub: ${error}`);
+    /**
+     * Create a new instance of mdstfu
+     * @param url The URL of the markdown file to fetch
+     */
+    constructor(url: string) {
+        this.url = url;
+        this.markdown = '';
     }
-}
 
-/**
- * Fetches a markdown file from a given URL.
- * @param url The URL of the markdown file.
- * @returns The markdown content.
- */
-export async function fetchMarkDownFromUrl(url: string)
-{
-    try {
-        const response = await fetch(url);
-        const markdown = await response.text();
-        return markdown;
-    } catch (error) {
-        console.error(`Error fetching markdown from URL: ${error}`);
+    /**
+     * Fetch the markdown file from the web
+     */
+    async fetch()
+    {
+        if (this.url.includes('github.com')) {
+            this.url = this.url.replace('github.com', 'raw.githubusercontent.com');
+            this.url = this.url.replace('/blob', '');
+        }
+
+        const response = await fetch(this.url);
+        this.markdown = await response.text();
+    }
+
+    /**
+     * Render the markdown file
+     * @returns The rendered markdown
+    */
+    render()
+    {
+        return marked(this.markdown);
     }
 }

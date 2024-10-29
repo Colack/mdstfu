@@ -10,12 +10,15 @@
   ],
   "scripts": {
     "build": "tsup",
-    "test": "echo \"Test not implemented\" && exit 0"
+    "test": "node ./tests/testReadme.js"
   },
   "author": "colack",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "marked": "^14.1.3"
   }
 }
