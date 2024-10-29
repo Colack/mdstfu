@@ -1,6 +1,6 @@
 {
   "name": "mdstfu",
-  "version": "1.0.0",
+  "version": "1.0.01",
   "description": "Fetch markdown files from urls.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "colack",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "^5.6.3"
