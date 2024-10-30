@@ -5,12 +5,12 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsup",
-    "version": "npm version patch -m 'Upgrade version to %s'",
     "test": "jest"
   },
   "author": "colack",
@@ -24,9 +24,6 @@
   },
   "dependencies": {
     "@types/node": "^22.8.4",
-    "chalk": "^5.3.0",
-    "fs": "^0.0.1-security",
-    "highlight.js": "^11.10.0",
     "marked": "^14.1.3"
   }
 }

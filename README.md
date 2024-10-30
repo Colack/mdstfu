@@ -1,22 +1,17 @@
 # mdstfu
 
-`mdstfu` is a powerful package for fetching and rendering Markdown files from the web or local sources. It supports caching, custom rendering, syntax highlighting, theming options, and event hooks, making it flexible for various use cases.
+`mdstfu` is a TypeScript library designed to fetch and render Markdown files from the web with caching capabilities and customizable rendering options. This project utilizes the `marked` library to convert Markdown to HTML.
 
 ## Features
 
-- **Fetch Markdown**: Load Markdown files from URLs or local paths.
-- **Caching**: Automatically cache fetched Markdown to avoid redundant requests.
-- **Custom Rendering**: Provide a custom rendering function to modify the output.
-- **Syntax Highlighting**: Built-in support for syntax highlighting using Highlight.js.
-- **Theming Options**: Apply custom themes for styling rendered Markdown.
-- **Event Hooks**: Register listeners for various events like fetch start, fetch complete, and errors.
-- **Error Handling**: Gracefully handle fetch errors and communicate them effectively.
-- **Markdown Options**: Configure options for Markdown rendering with marked.js.
-- **Version Control Integration**: Follow Semantic Versioning for project management.
+- Fetch Markdown content from a specified URL.
+- Cache fetched Markdown to minimize network requests.
+- Support for custom rendering through a user-defined renderer function.
+- Configurable Markdown parsing options.
 
 ## Installation
 
-To install `mdstfu`, use npm:
+You can install `mdstfu` via npm:
 
 ```bash
 npm install mdstfu
@@ -24,96 +19,78 @@ npm install mdstfu
 
 ## Usage
 
-Here's a basic example of how to use the `mdstfu` package:
+### Importing the Library
 
-```javascript
+```typescript
 import { mdstfu } from 'mdstfu';
-
-const markdownFetcher = new mdstfu('https://example.com/sample.md', undefined, {
-    gfm: true,
-    tables: true,
-});
-
-markdownFetcher.on('fetchStart', (url) => {
-    console.log(`Fetching markdown from: ${url}`);
-});
-
-markdownFetcher.on('fetchComplete', (markdown) => {
-    console.log('Fetch complete:', markdown);
-});
-
-markdownFetcher.on('fetchError', (error) => {
-    console.error('Error fetching markdown:', error);
-});
-
-(async () => {
-    try {
-        await markdownFetcher.fetch();
-        const renderedMarkdown = markdownFetcher.render();
-        console.log(renderedMarkdown);
-    } catch (error) {
-        console.error('Failed to fetch and render markdown:', error);
-    }
-})();
 ```
 
-## Options
+### Creating an Instance
 
-### Constructor Parameters
+To use the `mdstfu` class, create a instance with the URL of the Markdown file you want to fetch. You can also provide an optional custom renderer and Markdown options.
 
-- `url` (string): The URL or path of the Markdown file to fetch.
-- `customRenderer` (function): A custom rendering function to modify the output.
-- `markdownOptions` (object): Options for configuring the Markdown rendering with marked.js.
-- `theme` (string): Custom theme styling for rendering.
-
-#### Example Theme
-
-You can define a custom theme like this:
-
-```javascript
-const customTheme = {
-    heading: chalk.red,
-    code: chalk.yellow,
-    link: chalk.blue,
-    text: chalk.white,
+```typescript
+const url = 'https://example.com/sample.md';
+const customRenderer = (markdown: string) => {
+    // Modify the markdown here if needed
+    return markdown.replace(/some text/g, 'replacement text');
 };
 
-const markdownFetcher = new mdstfu('path/to/markdown.md', undefined, {}, customTheme);
+const markdownOptions = {
+    // Your marked options
+};
+
+const markdownFetcher = new mdstfu(url, customRenderer, markdownOptions);
 ```
 
-### Event Hooks
+### Fetching and Rendering Content
 
-You can listen for specific events using the `on` method:
+You can fetch and render Markdown content as follows:
 
-- `fetchStart`: Triggered when fetching begins.
-- `fetchComplete`: Triggered when fetching completes successfully.
-- `fetchError`: Triggered when an error occurs during fetching.
-- `renderComplete`: Triggered when the markdown is rendered.
+```typescript
+async function renderMarkdown() {
+    try {
+        await markdownFetcher.fetch();  // Fetches and caches the markdown
+        const renderedHTML = await markdownFetcher.render();  // Renders the markdown to HTML
+        console.log(renderedHTML);  // Output the rendered HTML
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-#### Example of Event Hooks
-
-```javascript
-markdownFetcher.on('fetchStart', (url) => {
-    console.log(`Started fetching from ${url}`);
-});
+renderMarkdown();
 ```
+
+### API
+
+`constructor(url: string, customRenderer?: (markdown: string) => string, markdownOptions?: MarkedOptions)`
+
+- `url`: The URL of the Markdown file to fetch.
+- `customRenderer`: A custom renderer function to modify the fetched Markdown content.
+- `markdownOptions`: Options to pass to the `marked` library.
+
+`async fetch()`
+
+Fetches the Markdown from the provided URL and caches it for future requests.
+
+`async render(): Promise<string>`
+
+Renders the fetched Markdown as HTML. If the Markdown has not been fetched yet, it automatically calls `fetch()`.
+
+### Caching
+
+`mdstfu` implements a simple caching mechanism using a `Map` to store previously fetched Markdown content. If the same URL is requested again, it will return the cached content instead of making a new network request.
 
 ### Error Handling
 
-If an error occurs during fetching, it will be thrown as an exception. You can also listen for the `fetchError` event to handle errors gracefully.
-
-### Testing
-
-To run tests for `mdstfu`, use:
-
-```bash
-npm test
-```
-
-## Contributing
-
-Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
+Errors encountered during the fetching process are logged to the console, and a descriptive error is thrown. Ensure to handle these errors appropriately in your application.
 
 ## License
 
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## Supporters
+
+Thanks to all the contributors who have helped make this project possible!
+
+![Contributors](https://contrib.rocks/image?repo=colack/mdstfu)
