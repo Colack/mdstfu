@@ -1,5 +1,7 @@
 # mdstfu
 
+[![Venmo](https://img.shields.io/badge/Venmo-Click_here!-blue?style=for-the-badge&logo=venmo&logoColor=white&color=ff4b5c)](https://venmo.com/u/colackbtw)
+
 Take markdown files and convert them to HTML.
 
 ## Installation
