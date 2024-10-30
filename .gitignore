@@ -1,4 +1,4 @@
-/node_modules
-/coverage.data
-/coverage
-/dist
+node_modules/
+dist/
+*.log
+.DS_Storec
