@@ -1,5 +1,7 @@
 # mdstfu
 
+[![Venmo](https://img.shields.io/badge/Venmo-Click_here!-blue?style=for-the-badge&logo=venmo&logoColor=white&color=ff4b5c)](https://venmo.com/u/colackbtw)
+
 `mdstfu` is a TypeScript library designed to fetch and render Markdown files from the web with caching capabilities and customizable rendering options. This project utilizes the `marked` library to convert Markdown to HTML.
 
 ## Features
