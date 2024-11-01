@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.11] - 2024-11-01
+
+### Added
+
+- Fixed some issues with the README file.
+- Changed the codeowners file to include the correct team.
+
 ## [1.1.1] - 2024-11-01
 
 ### Added

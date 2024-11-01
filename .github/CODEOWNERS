@@ -2,19 +2,29 @@
 __tests__/* @colack
 docs/* @colack
 src/* @colack
+
+.editorconfig @colack
+.eslintignore @colack
 .gitattributes @colack
 .gitignore @colack
 .mailmap @colack
 .npmignore @colack
+.npmrc @colack
+.prettierrc @colack
+.npmrc @colack
+
 biome.json @colack
 CHANGELOG.md @colack
 CODE_OF_CONDUCT.md @colack
+commitlint.config.js @colack
 CONTRIBUTING.md @colack
 jest.config.js @colack
 LICENSE @colack
 package.json @colack
 package-lock.json @colack
 README.md @colack
+release.config.js @colack
+ROADMAP.md @colack
 SECURITY.md @colack
 tsconfig.json @colack
 tsup.config.ts @colack
