@@ -2,7 +2,7 @@
 
 [![Venmo](https://img.shields.io/badge/Venmo-Click_here!-blue?style=for-the-badge&logo=venmo&logoColor=white&color=ff4b5c)](https://venmo.com/u/colackbtw)
 
-`mdstfu` is a TypeScript utility for fetching, caching, and rendering Markdown from a specified URL. It uses the `marked` library to parse and render Markdown with support for customizable rendering options.
+`mdstfu` is a TypeScript package for fetching, caching, and rendering Markdown from a specified URL. It uses the `marked` library to parse and render Markdown with support for customizable rendering options.
 
 ## Features
 
@@ -16,7 +16,7 @@
 Install via npm:
 
 ```bash
-npm install marked
+npm install mdstfu
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ npm install marked
 Import the `mdstfu` class and create an instance by providing a URL, an optional custom renderer, and optional Markdown options:
 
 ```typescript
-import { mdstfu } from './path/to/mdstfu';
+import { mdstfu } from 'mdstfu';
 import { type MarkedOptions } from 'marked';
 
 const url = 'https://example.com/markdown-file.md';
@@ -72,11 +72,7 @@ The `mdstfu` class provides methods to fetch and render Markdown content.
 #### Constructor
 
 ```typescript
-constructor(
-  url: string,
-  customRenderer?: (markdown: string) => string,
-  markdownOptions?: MarkedOptions,
-)
+new mdstfu(url: string, customRenderer?: (markdown: string) => string, markdownOptions?: MarkedOptions)
 ```
 
 - `url`: The URL of the Markdown file to fetch.
