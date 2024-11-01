@@ -1,9 +1,7 @@
-module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
-    moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-    transform: {
-        '^.+\\.ts$': 'ts-jest',
-    },
-    testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+export default {
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  testEnvironment: 'node',
+  extensionsToTreatAsEsm: ['.ts'],
 };

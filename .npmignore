@@ -1,0 +1,11 @@
+__tests__/
+.github/
+dist/
+node_modules/
+src/
+Biome.json
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+jest.config.js
+tsconfig.json
+tsup.config.ts

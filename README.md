@@ -2,18 +2,18 @@
 
 [![Venmo](https://img.shields.io/badge/Venmo-Click_here!-blue?style=for-the-badge&logo=venmo&logoColor=white&color=ff4b5c)](https://venmo.com/u/colackbtw)
 
-`mdstfu` is a TypeScript library designed to fetch and render Markdown files from the web with caching capabilities and customizable rendering options. This project utilizes the `marked` library to convert Markdown to HTML.
+`mdstfu` is a TypeScript library that fetches and renders Markdown files from the web, with built-in caching and support for customizable rendering using the `marked` library. This project provides a flexible way to retrieve, cache, and convert Markdown content to HTML.
 
 ## Features
 
-- Fetch Markdown content from a specified URL.
-- Cache fetched Markdown to minimize network requests.
-- Support for custom rendering through a user-defined renderer function.
-- Configurable Markdown parsing options.
+- _Fetch Markdown_ from a specified URL.
+- _Cache Fetched Content_ to minimize network requests and improve performance.
+- _Custom Rendering Support_ via a user-defined functin.
+- _Configurable Parsing Options_ with the `marked` library.
 
 ## Installation
 
-You can install `mdstfu` via npm:
+Install `mdstfu` via npm:
 
 ```bash
 npm install mdstfu
@@ -29,70 +29,4 @@ import { mdstfu } from 'mdstfu';
 
 ### Creating an Instance
 
-To use the `mdstfu` class, create a instance with the URL of the Markdown file you want to fetch. You can also provide an optional custom renderer and Markdown options.
-
-```typescript
-const url = 'https://example.com/sample.md';
-const customRenderer = (markdown: string) => {
-    // Modify the markdown here if needed
-    return markdown.replace(/some text/g, 'replacement text');
-};
-
-const markdownOptions = {
-    // Your marked options
-};
-
-const markdownFetcher = new mdstfu(url, customRenderer, markdownOptions);
-```
-
-### Fetching and Rendering Content
-
-You can fetch and render Markdown content as follows:
-
-```typescript
-async function renderMarkdown() {
-    try {
-        await markdownFetcher.fetch();  // Fetches and caches the markdown
-        const renderedHTML = await markdownFetcher.render();  // Renders the markdown to HTML
-        console.log(renderedHTML);  // Output the rendered HTML
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-renderMarkdown();
-```
-
-### API
-
-`constructor(url: string, customRenderer?: (markdown: string) => string, markdownOptions?: MarkedOptions)`
-
-- `url`: The URL of the Markdown file to fetch.
-- `customRenderer`: A custom renderer function to modify the fetched Markdown content.
-- `markdownOptions`: Options to pass to the `marked` library.
-
-`async fetch()`
-
-Fetches the Markdown from the provided URL and caches it for future requests.
-
-`async render(): Promise<string>`
-
-Renders the fetched Markdown as HTML. If the Markdown has not been fetched yet, it automatically calls `fetch()`.
-
-### Caching
-
-`mdstfu` implements a simple caching mechanism using a `Map` to store previously fetched Markdown content. If the same URL is requested again, it will return the cached content instead of making a new network request.
-
-### Error Handling
-
-Errors encountered during the fetching process are logged to the console, and a descriptive error is thrown. Ensure to handle these errors appropriately in your application.
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
-## Supporters
-
-Thanks to all the contributors who have helped make this project possible!
-
-![Contributors](https://contrib.rocks/image?repo=colack/mdstfu)
+To use the `mdstfu` class, create an instance with the URL of the Markdown file. Optionally,
